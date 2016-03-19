@@ -3,7 +3,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
-        applicationId "com.example.joonghyup.myapplication"
+        applicationId "com.example.tdd.myapplication"
         minSdkVersion 16
         targetSdkVersion 21
         versionCode 1
