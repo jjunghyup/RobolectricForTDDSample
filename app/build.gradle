@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
     defaultConfig {
-        applicationId "com.example.joshskeen.myapplication"
+        applicationId "com.example.joonghyup.myapplication"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
@@ -23,7 +23,6 @@ android {
         }
         robolectric {
             java.srcDir file('src/test/java/')
-            resources.srcDir file('src/test/resources')
         }
     }
 }
@@ -33,4 +32,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.assertj:assertj-android:1.1.0'
     testCompile 'org.robolectric:robolectric:3.0'
+    testCompile 'org.mockito:mockito-core:1.10.19'
 }

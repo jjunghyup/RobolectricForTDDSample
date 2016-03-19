@@ -1,11 +1,7 @@
-![build status](https://travis-ci.org/mutexkid/android-studio-robolectric-example.svg)
 
 ## Android Studio Robolectric Test Example
 --- 
-This example project shows how to use robolectric, junit and assertJ with your gradle-based Android Studio projects.
-Examine the top-level build.gradle and app/build.gradle files for a new project configuration gradle boilerplate.
-
-Make sure you're running the most recent version of Android Studio from the Canary Channel for this to work correctly (1.2 Beta as of today).
+This example project shows how to do TDD by using robolectric, junit, mockito and assertJ with your gradle-based Android Studio projects.
 
 ### To set up from a new Android Studio Project: 
 
@@ -15,10 +11,10 @@ Add test dependencies on assertj-android and Robolectric to your module's build.
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.example.joshskeen.myapplication"
+        applicationId "com.example.joonghyup.myapplication"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
@@ -38,54 +34,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.assertj:assertj-android:1.1.0'
     testCompile 'org.robolectric:robolectric:3.0'
+    testCompile 'org.mockito:mockito-core:1.10.19'
 }
 ```
-
-2. If they don't already exist, create directories matching src/test/java/ and add a package matching your project's packagename. E.g. src/test/java/com.example.joshskeen.myapplication
- <img src="https://www.evernote.com/shard/s313/sh/d69d9f94-76cb-42ac-858f-b6f7da68a6fb/f8d5f3ca3223094317d895c78cae5103/deep/0/TestMyActivity.java----app----android-studio-robolectric-example------code-foo-bar-android-studio-robolectric-example----Android-Studio-(Beta)-0.8.4.png" width="600">
-
-
-4. Sync your gradle file by clicking 'Sync Project with Gradle Files'
- <img src="https://www.evernote.com/shard/s313/sh/75d04b22-0ef0-449e-b137-e65dd4948865/28376be9739b21ca941d8fb6a4eeda88/deep/0/README.md----MyApplication----My-Application------AndroidStudioProjects-MyApplication----Android-Studio-(Beta)-0.8.1.png" width="600">
-
-
- 
-5. Select "Unit Tests" under "Build Variants"
- <img src="https://www.evernote.com/shard/s313/sh/560c4b5f-e70b-4800-b46f-bc1968618338/89c1e740e7134316961a103021daf1cb/deep/0/MyActivityTest.java---android-studio-robolectric-example------code-android-studio-robolectric-example-.png" width="600">
-
-6. Create your unit test in src/test/java/com.example.joshskeen.myapplication/MyActivityTest.java:
- ```java
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
-public class MyActivityTest {
-
-    private MyActivity mActivity;
-
-    @Before
-    public void setup() {
-        mActivity = Robolectric.buildActivity(MyActivity.class).create().get();
-    }
-
-    @Test
-    public void myActivityAppearsAsExpectedInitially() {
-        assertThat(mActivity.mClickMeButton).hasText("Click me!");
-        assertThat(mActivity.mHelloWorldTextView).hasText("Hello world!");
-    }
-
-    @Test
-    public void clickingClickMeButtonChangesHelloWorldText() {
-        assertThat(mActivity.mHelloWorldTextView).hasText("Hello world!");
-        mActivity.mClickMeButton.performClick();
-        assertThat(mActivity.mHelloWorldTextView).hasText("HEY WORLD");
-    }
-
-}
-```
-
-7. Ctrl + click (or right-click) on the test and select Run > MyActivityTest. Make sure you select "Gradle" test (rather than unit), indicated by the gradle icon as seen here: <img
- src="https://www.evernote.com/shard/s313/sh/86389266-daed-4cce-a363-3c16ffc121b2/f33e967214e3177383b9874cd60c3d86/deep/0/Screenshot-4-7-15,-1-46-PM.png" width="600">
-
-
-8. Write Robolectric Tests! For more intel on how to write tests using robolectric + assertJ, check out [http://blog.bignerdranch.com/2583-testing-the-android-way/](http://blog.bignerdranch.com/2583-testing-the-android-way/)
-
-
