@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Robolectric Sample</string>
+    <string name="id">Your ID</string>
+    <string name="pw">pw</string>
+    <string name="loginButton">loginButton</string>
+</resources>
