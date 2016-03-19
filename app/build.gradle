@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.example.joonghyup.myapplication"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -22,7 +22,7 @@ android {
             java.srcDirs = ['src/main/java']
         }
         robolectric {
-            java.srcDir file('src/test/java/')
+            java.srcDirs = ['src/test/java/']
         }
     }
 }
