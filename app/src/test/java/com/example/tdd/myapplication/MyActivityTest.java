@@ -52,14 +52,6 @@ public class MyActivityTest {
     @Test
     public void testNextActivity(){
         Button nextButton = (Button) activity.findViewById(R.id.main_nextActivity);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, NextActivity.class);
-                activity.startActivity(intent);
-            }
-        });
-
         nextButton.performClick();
         Intent nextActivityIntent = Shadows.shadowOf(activity).getNextStartedActivity();
         assertEquals(NextActivity.class.getName(), nextActivityIntent.getComponent().getClassName());
