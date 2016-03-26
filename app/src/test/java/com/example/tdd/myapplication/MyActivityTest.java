@@ -1,5 +1,6 @@
 package com.example.tdd.myapplication;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -61,7 +62,7 @@ public class MyActivityTest {
 
         nextButton.performClick();
         Intent nextActivityIntent = Shadows.shadowOf(activity).getNextStartedActivity();
-        System.out.println(nextActivityIntent.getComponent().getClassName());
+        assertEquals(NextActivity.class.getName(), nextActivityIntent.getComponent().getClassName());
 
     }
 
