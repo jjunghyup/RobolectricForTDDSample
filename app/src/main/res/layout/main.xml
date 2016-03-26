@@ -27,6 +27,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/loginButton"/>
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/main_resultView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_header"/>
 
 </RelativeLayout>

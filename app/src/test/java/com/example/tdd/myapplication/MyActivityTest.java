@@ -1,8 +1,10 @@
 package com.example.tdd.myapplication;
 
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.tdd.runner.CustomGradleTestRunner;
+import com.example.tdd.shadow.ShadowLoginHandler;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,11 +18,11 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by cholong on 16. 3. 19..
  */
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class)
+@RunWith(CustomGradleTestRunner.class)
+@Config(constants = BuildConfig.class, shadows = {ShadowLoginHandler.class})
 public class MyActivityTest {
     MyActivity activity;
-    LoginHandler loginHandler;
+
     @Before
     public void setup(){
         activity = Robolectric.buildActivity(MyActivity.class).create().get();
@@ -34,28 +36,14 @@ public class MyActivityTest {
 
     @Test
     public void testLogin(){
-        final EditText idEditText = (EditText) activity.findViewById(R.id.main_id);
-        final EditText pwEditText = (EditText) activity.findViewById(R.id.main_pw);
         Button loginButton = (Button) activity.findViewById(R.id.main_loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login(
-                        idEditText.getText().toString(),
-                        pwEditText.getText().toString()
-                );
-            }
-        });
-
-        idEditText.setText("id");
-        pwEditText.setText("id");
+        TextView view = (TextView) activity.findViewById(R.id.main_resultView);
+        System.out.println(ShadowLoginHandler.class.getCanonicalName());
 
         loginButton.performClick();
 
+        assertEquals("OK", view.getText());
     }
 
-    private void login(String id, String pw) {
-        loginHandler.login(id,pw);
-    }
 
 }
