@@ -25,6 +25,7 @@ android {
             java.srcDirs = ['src/test/java/']
         }
     }
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {

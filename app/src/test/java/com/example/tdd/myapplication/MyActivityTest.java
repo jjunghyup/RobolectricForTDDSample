@@ -1,5 +1,7 @@
 package com.example.tdd.myapplication;
 
+import android.content.Intent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -11,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertEquals;
@@ -18,8 +21,8 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by cholong on 16. 3. 19..
  */
-@RunWith(CustomGradleTestRunner.class)
-@Config(constants = BuildConfig.class, shadows = {ShadowLoginHandler.class})
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class)
 public class MyActivityTest {
     MyActivity activity;
 
@@ -43,6 +46,23 @@ public class MyActivityTest {
         loginButton.performClick();
 
         assertEquals("OK", view.getText());
+    }
+
+    @Test
+    public void testNextActivity(){
+        Button nextButton = (Button) activity.findViewById(R.id.main_nextActivity);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, NextActivity.class);
+                activity.startActivity(intent);
+            }
+        });
+
+        nextButton.performClick();
+        Intent nextActivityIntent = Shadows.shadowOf(activity).getNextStartedActivity();
+        System.out.println(nextActivityIntent.getComponent().getClassName());
+
     }
 
 

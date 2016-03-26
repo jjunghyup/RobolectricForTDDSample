@@ -26,6 +26,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/loginButton"/>
+
+        <Button
+            android:id="@+id/main_nextActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nextActivity"/>
     </LinearLayout>
     <TextView
         android:id="@+id/main_resultView"
